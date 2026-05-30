@@ -5,14 +5,22 @@
 
 ## Executive Summary
 
-Using a 500-row simulated supplier dataset, I built a five-sheet Excel workbook that turns raw supplier records into a live procurement decision tool. A single fact table on Sheet 1 feeds a formula-driven cross-tab summary, a one-cell lookup card, a four-driver what-if scenario model, and an executive dashboard - all linked by formula with zero manual refresh. The model surfaces at-risk suppliers via traffic-light flags, lets a procurement manager type any Supplier ID and see all twelve fields populate instantly, and quantifies the financial impact of a cost shock or lead-time reduction across the whole supplier base. The output is portfolio-grade in that it demonstrates the four skills any procurement or business analyst is expected to bring to a spreadsheet: structured data modelling, conditional logic, lookup and aggregation, and what-if scenario design.
+Using a 500-row simulated supplier dataset, I built a five-sheet Excel workbook that turns raw supplier records into a live procurement decision tool. 
+A single fact table on Sheet 1 feeds a formula-driven cross-tab summary, a one-cell lookup card, a four-driver what-if scenario model, and an executive dashboard - all linked by formula with zero manual refresh. 
+The model surfaces at-risk suppliers via traffic-light flags, lets a procurement manager type any Supplier ID and see all twelve fields populate instantly, and quantifies the financial impact of a cost shock or lead-time reduction across the whole supplier base. 
+The output is portfolio-grade in that it demonstrates the four key skills working with a spreadsheet: structured data modelling, conditional logic, lookup and aggregation, and what-if scenario design.
 
 <img width="1421" height="1007" alt="image" src="https://github.com/user-attachments/assets/d343e849-2062-4329-a6e4-587e7c1515ee" />
 
 
 ## Business Context
 
-Procurement teams in mid-to-large companies typically manage hundreds of suppliers across multiple spend categories and countries. The recurring tasks are the same regardless of industry: (1) identify the suppliers most at risk of missing SLAs, (2) compare cost and lead-time performance across categories and supplier tiers, (3) look up any single supplier's full record on demand, and (4) model the financial impact of cost increases or lead-time improvements before recommending contract changes. This workbook is a portfolio-scale demonstration that those four jobs can be wired into a single self-contained Excel file with no external dependencies.
+Procurement teams in mid-to-large companies typically manage hundreds of suppliers across multiple spend categories and countries.
+The recurring tasks are the same regardless of industry:
+(1) identify the suppliers most at risk of missing SLAs
+(2) compare cost and lead-time performance across categories and supplier tiers
+(3) look up any single supplier's full record on demand
+(4) model the financial impact of cost increases or lead-time improvements before recommending contract changes.
 
 ## The Business Question
 
@@ -27,7 +35,7 @@ Procurement teams in mid-to-large companies typically manage hundreds of supplie
 **Key formula techniques deployed:**
 
 - **Nested IF for classification.** Health Flag (`=IF(I2<85,"At Risk",IF(I2<92,"Monitor","OK"))`) and Cost Band (four-tier nested IF on unit cost) classify every row at the source so downstream sheets can simply count or filter on these flags.
-- **AVERAGEIFS / COUNTIFS / SUMIFS for cross-tab aggregation.** The Category Summary sheet recreates a PivotTable as live formulas - every Category × Tier combination and every Country × Tier combination computes six metrics independently.
+- **AVERAGEIFS / COUNTIFS / SUMIFS for cross-tab aggregation.** The Category Summary sheet recreates a PivotTable as live formulas. Every Category × Tier combination and every Country × Tier combination computes six metrics independently.
 - **VLOOKUP with exact match and IFERROR fallback.** The lookup card uses a single input cell to drive twelve VLOOKUP formulas, each pulling a different column from the fact table.
 - **AVERAGEIF for single-criterion roll-ups.** The Category Manager block on the lookup card and most of the dashboard tables use AVERAGEIF / SUMIF / COUNTIF for simple one-condition aggregates.
 - **Anchored input cells for scenario modelling.** Four `$C$6`-style absolute references propagate cost-shock, lead-time, and buffer inputs into the scenario columns; changing one input cell recomputes the whole model.
