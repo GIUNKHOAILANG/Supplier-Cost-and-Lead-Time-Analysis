@@ -52,7 +52,8 @@ Procurement teams in mid-to-large companies typically manage hundreds of supplie
 
 **Finding 4 - A 10% cost shock applied uniformly produces a clearly quantified spend impact.** The Scenario Analysis sheet's "Estimated Spend Impact" row converts a hypothetical inflation event into pounds, which is exactly the number a procurement director needs to take to a CFO. A 3-day lead-time reduction, in contrast, does not change spend but improves the effective lead-time figure that feeds into safety-stock decisions.
 
-<img width="836" height="588" alt="image" src="https://github.com/user-attachments/assets/caf05b9b-1db8-48cb-a0ca-48b2a4992ad6" />
+<img width="829" height="567" alt="image" src="https://github.com/user-attachments/assets/ffe78a36-4b4b-45a4-84fe-0e66301d82d6" />
+
 
 
 ## Recommendations
@@ -70,8 +71,7 @@ Procurement teams in mid-to-large companies typically manage hundreds of supplie
 - **The data is simulated, not real.** Annual spend, on-time %, and contract dates are randomly generated within plausible ranges. The patterns are realistic but the absolute numbers are illustrative only.
 - **The Health Flag thresholds (85 / 92) are industry rules of thumb, not company-specific SLAs.** In a real deployment these would be set from contract documents per supplier or per category.
 - **The Cost Band cutoffs (£50 / £250 / £1,000) are uniform across all categories.** This is a simplification - a "premium" office supply is a different price point from a "premium" IT asset, and a production version would have category-specific bands.
-- **VLOOKUP is used in place of XLOOKUP.** Both produce correct results on this dataset; XLOOKUP would be cleaner (left-of-column lookup, native error handling, direct array argument), but VLOOKUP keeps the workbook backwards-compatible with pre-2021 Excel versions.
-- **The scenario model has one known bug** that a portfolio version would fix: the "Avg Effective Lead Days with buffer" base-case cell adds the safety-stock days to the avg unit cost instead of the avg lead days. The scenario column offsets work correctly, but the base value is off. A real review pass would catch this and correct the formula.
+- **VLOOKUP is used in place of XLOOKUP.** Both produce correct results on this dataset; XLOOKUP would be cleaner (left-of-column lookup, native error handling, direct array argument), but VLOOKUP keeps the workbook backwards-compatible with pre-2021 Excel versions (what I'm having at the moment).
 
 ## What I'd Do Next
 
